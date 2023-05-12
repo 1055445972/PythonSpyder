@@ -8,7 +8,7 @@ Created on Fri Apr 14 15:23:28 2023
 
 #1.build_opener()修改报头
 import urllib.request
-url="https://blog.csdn.net/weiwei_pig/article/details/51178226"
+url="https://img08.tooopen.com/20230408/tooopen_tp_16380838856060.jpg"
 headers=("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.41")
 opener=urllib.request.build_opener()
 opener.addheaders=[headers]

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/python爬虫.iml" filepath="$PROJECT_DIR$/.idea/python爬虫.iml" />
+      <module fileurl="file://$USER_HOME$/PycharmProjects/runoob_python/.idea/runoob_python.iml" filepath="$USER_HOME$/PycharmProjects/runoob_python/.idea/runoob_python.iml" />
     </modules>
   </component>
 </project>

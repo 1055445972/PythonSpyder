@@ -18,6 +18,9 @@ https://search.jd.com/Search?keyword=%E6%B8%B8%E6%88%8F%E6%9C%AC&wq=%E6%B8%B8%E6
 
 import re
 import urllib.request
+opener = urllib.request.build_opener()
+opener.addheaders = [('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
+urllib.request.install_opener(opener)
 def craw(url,page):
     url = urllib.request.Request(url)
     url.add_header("User-Agent",
@@ -29,23 +32,28 @@ def craw(url,page):
     #将网址转为字符串
     html1=str(html1)
     #分析html头到html尾-
-    pat1='<div id="J_goodsList".+? <div class="page clearfix">'
+    #print(html1)
+    pat1='<div class="list-vi".+? class="page-main">'
     #compile()全局匹配字符，findall()源字符
     result1=re.compile(pat1).findall(html1)
-    print(type(result1))
+    #print(type(result1))
+    #print(result1)
     #返回第一个结果
     result1=result1[0]
     #构造提取图片连接正则表达式
-    pat2='<img width="220" height="220" data-img="1" data-lazy-img="//(.+?\.jpg)">'
-
+    pat2='<img src="(.+?\.jpg)" alt=".+?"/>'
+    print(pat2)
     imagelist=re.compile(pat2).findall(result1)
+    print(imagelist)
     x=1
     for imageurl in imagelist:
         #保存图片地址 +名字
-        imagename="D:/paquhtml/img/"+str(page)+str(x)+".jpg"
+        imagename="D:/paquhtml/"+str(page)+str(x)+".jpg"
         #图片链接
-        imageurl="http://"+imageurl
+        #imageurl="http://"+imageurl
+        print(imageurl)
         try:
+            
             urllib.request.urlretrieve(imageurl,filename=imagename)
         except urllib.error.URLError as e:
             if hasattr(e,"code"):
@@ -55,7 +63,7 @@ def craw(url,page):
         x+=1
     #爬取第1页到第79页
 
-for i in range(1,5,2):
+for i in range(1,10):
     #url地址
-    url="https://search.jd.com/Search?keyword=%E6%B8%B8%E6%88%8F%E6%9C%AC&wq=%E6%B8%B8%E6%88%8F%E6%9C%AC&pvid=094d92876b8449169df59ea573d6f89d&page="+str(i)
+    url="https://www.tooopen.com/img_"+str(i)
     craw(url,i)
